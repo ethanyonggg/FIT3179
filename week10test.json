@@ -109,8 +109,8 @@
         "tooltip": [
           { "field": "country_name", "type": "nominal" },
           { "field": "2014_inflation", "type": "quantitative", "title": "2014 Inflation Rate", "format": ".2f" },
-          { "field": "2014_co2", "type": "quantitative", "title": "1980 CO2 Emissions", "format": ".2f" },
-          { "field": "2014", "type": "quantitative", "title": "2014 Data", "format": "," }
+          { "field": "2014_co2", "type": "quantitative", "title": "2014 CO2 Emissions", "format": ".2f" },
+          { "field": "2014", "type": "quantitative", "title": "2014 Unemployment", "format": "," }
         ]
       }
     },
