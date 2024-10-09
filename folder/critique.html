@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Multiple Visualisations | An Example</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="styles.css" media="all">
+
+
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>Global Analysis of Inflation, Unemployment, and CO2 Emissions: Understanding Interdependencies (2014-2024)</h1>
+        <p>High inflation can erode the purchasing power of consumers, potentially leading to reduced demand for goods and services, which in turn affects job markets. By studying this relationship, policymakers can better understand how to manage inflation without creating spikes in unemployment, thus ensuring social stability.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+
+      <div class="pure-u-1-2">
+        <h2>Inflation Trends Among the Top 10 Countries (2014-2024)</h2>
+        <p>Countries, like Venezuela, have consistently held the top rank throughout the period, 
+          indicating persistent inflationary challenges. In contrast, countries such as Zimbabwe and 
+          Argentina show significant fluctuations, with their ranks rising and falling over the years,
+           suggesting varying levels of economic stability and policy responses. </p>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div id="vis3" class="vis-container"></div>
+      </div>
+    </div>
+
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="vis2" class="vis-container"></div>
+      </div>
+    </div>
+    
+    <!-- pure grid group -->
+    <div class="description description-right">
+      <h2>2014 Inflation Rate vs. CO2 Emissions by Country</h2>
+      <p> Argentina  has a relatively high inflation rate and moderate CO2 emissions, and China, 
+        with substantial emissions despite a lower inflation rate. The scatter pattern indicates that 
+        while some countries experience high inflation and emissions concurrently, others maintain a balance with 
+        lower rates in both aspects</p>
+    </div>
+
+
+    </div>
+    <!-- end pure grid group -->
+
+  <script type="text/javascript">
+    var specVis1 = "test.json";
+    var specVis2 = "week10test.json";
+    var specVis3 = "top_10_countries.json";
+    var specVis4 = "co2_line_chart.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false });
+
+    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+  </script>
+</body>
+
+</html>
