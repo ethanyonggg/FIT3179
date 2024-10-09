@@ -1,0 +1,105 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.1.0.json",
+    "autosize": {"resize": true},
+    "title": {
+      "text": ["Top 10 Countries with the Highest Inflation Rate (%) (2014-2024)"],
+      "subtitle": "Rank based on inflation rate (%)",
+      "subtitleColor": "gray",
+      "subtitleFontStyle": "italic",
+      "dy": 5
+    },
+    "width": 400,
+    "height": 300,
+    "data": {
+      "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/top_10_inflated.csv",
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {
+        "lookup": "country_name",
+        "from": {
+          "data": {
+            "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/flags.csv"
+          },
+          "key": "Country",
+          "fields": ["ImageURL"]
+        }
+      }
+    ],
+    "encoding": {
+      "x": {
+        "field": "year",
+        "type": "ordinal",
+        "sort": ["2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+        "axis": {"labelAngle": 0}
+      },
+      "y": {
+        "field": "rank",
+        "type": "quantitative",
+        "sort": "descending",
+        "scale": {"domain": [0.5, 10.5]}
+      }
+    },
+    "layer": [
+      {
+        "params": [
+          {
+            "name": "select",
+            "select": {"type": "point", "fields": ["Country"]}
+          }
+        ],
+        "mark": {
+          "type": "line",
+          "cursor": "pointer",
+          "point": {"filled": false, "fill": "white"}
+        },
+        "encoding": {
+          "color": {
+            "field": "country_name",
+            "bandPosition": 0,
+            "legend": null,
+            "scale": {
+              "range": [
+                "#4e79a7", "#edc948", "#f28e2b", "#c9c776", "#bab0ac", "#8ad6d0",
+                "#8452bd", "#9c755f", "#5aa24f", "#ff9da7"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "image",
+          "width": 50,
+          "height": 18,
+          "tooltip": true,
+          "cursor": "pointer"
+        },
+        "transform": [
+          {
+            "filter": "datum.year == '2024'"  
+          },
+          {
+            "lookup": "country_name",
+            "from": {
+              "data": {
+                "url": "top10_CoB.CSV",
+                "format": {"type": "csv"}
+              },
+              "key": "Country",
+              "fields": ["Population", "Year"]
+            }
+          }
+        ],
+        "encoding": {
+          "url": {"field": "ImageURL", "type": "nominal"},
+          "tooltip": [
+            {"field": "country_name", "type": "nominal"},
+            {"field": "inflation", "type": "quantitative", "format": ","}
+          ]
+        }
+      }
+    ],
+    "config": {"style": {"cell": {"stroke": "transparent"}}}
+  }
+  
