@@ -1,0 +1,129 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.1.0.json",
+  "autosize": {"resize": true},
+  "title": {
+    "text": ["Top 10 Countries with the Highest Inflation Rate (%) (2014-2024)"],
+    "subtitle": "Rank based on inflation rate (%)",
+    "subtitleColor": "gray",
+    "subtitleFontStyle": "italic",
+    "dy": 5
+  },
+  "width": 400,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/top_10_inflated.csv",
+    "format": {"type": "csv"}
+  },
+  "params": [
+    {
+      "name": "selectedYear",
+      "value": 2024,
+      "bind": {
+        "input": "range",
+        "min": 2014,
+        "max": 2024,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "lookup": "country_name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/flags.csv"
+        },
+        "key": "Country",
+        "fields": ["ImageURL"]
+      }
+    },
+    {
+      "filter": "toNumber(datum.year) <= selectedYear"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "sort": ["2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"],
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "sort": "descending",
+      "scale": {"domain": [0.5, 10.5]}
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "color": {
+          "field": "country_name",
+          "bandPosition": 0,
+          "legend": null,
+          "scale": {
+            "range": [
+              "#4e79a7", "#edc948", "#f28e2b", "#c9c776", "#bab0ac", "#8ad6d0",
+              "#8452bd", "#9c755f", "#5aa24f", "#ff9da7"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 50,
+        "tooltip": true,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "color": {
+          "field": "country_name",
+          "legend": null,
+          "scale": {
+            "range": [
+              "#4e79a7", "#edc948", "#f28e2b", "#c9c776", "#bab0ac", "#8ad6d0",
+              "#8452bd", "#9c755f", "#5aa24f", "#ff9da7"
+            ]
+          }
+        },
+        "tooltip": [
+          {"field": "country_name", "type": "nominal"},
+          {"field": "year", "type": "ordinal"},
+          {"field": "rank", "type": "quantitative"},
+          {"field": "inflation", "type": "quantitative", "format": ".2f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "image",
+        "width": 50,
+        "height": 18,
+        "tooltip": true,
+        "cursor": "pointer"
+      },
+      "transform": [
+        {
+          "filter": "toNumber(datum.year) == selectedYear"
+        }
+      ],
+      "encoding": {
+        "url": {"field": "ImageURL", "type": "nominal"},
+        "tooltip": [
+          {"field": "country_name", "type": "nominal"},
+          {"field": "inflation", "type": "quantitative", "format": ","}
+        ]
+      }
+    }
+  ],
+  "config": {"style": {"cell": {"stroke": "transparent"}}}
+}

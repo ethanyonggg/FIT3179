@@ -1,0 +1,74 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.1.0.json",
+  "autosize": { "resize": true },
+  "width": 400,
+  "height": 300,
+  "title": {
+    "text": "Carbon Dioxide Emission, 2014-2024",
+    "subtitle": "Emission recorded based on years",
+    "subtitleColor": "gray",
+    "subtitleFontStyle": "italic",
+    "dy": -20
+  },
+  "params": [
+    {
+      "name": "selectedYear",
+      "value": 2024,
+      "bind": {
+        "input": "range",
+        "min": 2014,
+        "max": 2024,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "nominal",
+      "axis": { "labelAngle": -30 },
+      "sort": [
+        "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"
+      ]
+    },
+    "y": {
+      "field": "unemployment_rate",
+      "type": "quantitative",
+      "title": "Unemployment Rate (%)"
+    },
+    "color": { "field": "country" },
+    "tooltip": [
+      { "field": "unemployment_rate", "type": "quantitative", "format": "," },
+      { "field": "country", "type": "nominal" }
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/yearly_unemployment.csv",
+        "format": { "type": "csv" }
+      },
+      "mark": { "type": "line", "tooltip": true, "point": { "filled": true } },
+      "transform": [
+        { "filter": "toNumber(datum.year) <= selectedYear" }
+      ]
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/yearly_unemployment.csv",
+        "format": { "type": "csv" }
+      },
+      "mark": { "type": "text", "fontSize": 15, "align": "left", "dx": 10 },
+      "transform": [
+        { "filter": "datum.year == selectedYear" },
+        {
+          "filter": "datum.country == 'Iran' || datum.country == 'Mongolia' || datum.country == 'Sudan'"
+        },
+        { "calculate": "datum.country", "as": "coun" }
+      ],
+      "encoding": { "text": { "field": "coun" } }
+    }
+  ],
+  "config": { "style": { "cell": { "stroke": "transparent" } } }
+}

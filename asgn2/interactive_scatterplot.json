@@ -1,0 +1,154 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 680,
+  "height": 400,
+  "title": "2014 Inflation vs. CO2 Emissions",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/merged_inflation_co2_unemployment_no_na.csv"
+  },
+  "params": [
+    {
+      "name": "continent_highlight",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    },
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "name": "Unemployment Rate(%): "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "continent_highlight == null || datum.Continent == continent_highlight"
+    },
+    {
+      "filter": "datum['2014'] > Population_Above"
+    }
+  ],
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "x": {
+          "field": "2014_inflation",
+          "type": "quantitative",
+          "title": "2014 Inflation Rate",
+          "axis": { 
+            "tickCount": 10,
+            "grid": true
+          },
+          "scale": { "type": "log", "domain": [0.01, 100] }
+        },
+        "y": {
+          "field": "2014_co2",
+          "type": "quantitative",
+          "title": "2014 CO2 Emissions",
+          "axis": { 
+            "tickCount": 20,
+            "grid": true
+          },
+          "scale": { "type": "log", "domain": [0.01, 100] }
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": { "param": "continent_highlight", "value": 1.0 },
+          "value": 0.6
+        },
+        "size": {
+          "field": "2014",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [2, 5, 10, 15, 20],
+            "range": [10, 30, 50, 100, 150, 200]
+          },
+          "legend": { "format": ".1s" }
+        },
+        "tooltip": [
+          { "field": "country_name", "type": "nominal" },
+          { "field": "2014_inflation", "type": "quantitative", "title": "2014 Inflation Rate", "format": ".2f" },
+          { "field": "2014_co2", "type": "quantitative", "title": "2014 CO2 Emissions", "format": ".2f" },
+          { "field": "2014", "type": "quantitative", "title": "2014 Data", "format": "," }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "dy": -5
+      },
+      "transform": [
+        {
+          "filter": "datum['country_name'] == 'Greece' || datum['country_name'] == 'Spain' || datum['country_name'] == 'Bolivia'|| datum['country_name'] == 'Uruguay'"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "2014_inflation",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "2014_co2",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "country_name",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "black"
+        }
+      }
+    }
+  ]
+}
