@@ -21,7 +21,6 @@
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="styles.css" media="all">
 
-
 </head>
 
 <body>
@@ -31,8 +30,12 @@
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1-1">
-        <h1>Global Analysis of Inflation, Unemployment, and CO2 Emissions: Understanding Interdependencies (2014-2024)</h1>
-        <p>High inflation can erode the purchasing power of consumers, potentially leading to reduced demand for goods and services, which in turn affects job markets. By studying this relationship, policymakers can better understand how to manage inflation without creating spikes in unemployment, thus ensuring social stability.</p>
+        <h1 style="text-align:center; font-size:1.8em;">Global Analysis of <span style="color:red;">Inflation</span>, <span style="color:green;">Unemployment</span>, and <span style="color:blue;">CO2 Emissions</span>: Understanding Interdependencies (2014-2024)</h1>
+        <p><strong style="color:red;">High inflation</strong> can erode the purchasing power
+           of consumers, potentially leading to reduced demand for goods and services, which in turn affects
+            job markets. By studying this relationship, policymakers 
+            can better understand how to manage <strong style="color:red;">inflation</strong> without creating spikes in 
+            <strong style="color:green;">unemployment</strong>, thus ensuring social stability.</p>
       </div>
     </div>
     <!-- end pure grid group -->
@@ -47,13 +50,12 @@
 
     <!-- pure grid group -->
     <div class="pure-g">
-
       <div class="pure-u-1-2">
-        <h2>Inflation Trends Among the Top 10 Countries (2014-2024)</h2>
+        <h2><span style="color:red;">Inflation</span> Trends Among the Top 10 Countries (2014-2024)</h2>
         <p>Countries, like Venezuela, have consistently held the top rank throughout the period, 
-          indicating persistent inflationary challenges. In contrast, countries such as Zimbabwe and 
+          indicating persistent <strong style="color:red;">inflationary challenges</strong>. In contrast, countries such as Zimbabwe and 
           Argentina show significant fluctuations, with their ranks rising and falling over the years,
-           suggesting varying levels of economic stability and policy responses. </p>
+           suggesting varying levels of <strong style="color:green;">economic stability</strong> and <strong style="color:green;">policy responses</strong>.</p>
       </div>
 
       <div class="pure-u-1-3">
@@ -65,14 +67,12 @@
 
     <!-- pure grid group -->
     <div class="description description-right">
-      <h2>2014 Inflation Rate vs. CO2 Emissions by Country</h2>
+      <h2>2014 <span style="color:red;">Inflation Rate</span> vs. <span style="color:blue;">CO2 Emissions</span> by Country</h2>
       <p>Argentina has a relatively <strong style="color:red;">high inflation rate</strong> and moderate <strong style="color:blue;">CO2 emissions</strong>, and China, 
         with substantial <strong style="color:blue;">emissions</strong> despite a lower <strong style="color:red;">inflation rate</strong>. The scatter pattern indicates that 
         while some countries experience <strong style="color:red;">high inflation</strong> and <strong style="color:blue;">emissions</strong> concurrently, others maintain a balance with 
         lower rates in both aspects.</p>
-
     </div>
-    
 
     <!-- pure grid group -->
     <div class="pure-g">
@@ -80,7 +80,7 @@
         <div id="vis2" class="vis-container"></div>
       </div>
     </div>
-    
+
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-2-3">
@@ -88,7 +88,7 @@
       </div>
       <div class="pure-u-1-3">
         <div class="description description-right">
-          <h2>Unemployment Rate Trends (2014-2024)</h2>
+          <h2><span style="color:green;">Unemployment</span> Rate Trends (2014-2024)</h2>
           <p>Iran, Sudan, and Mongolia exhibit more <strong style="color:green;">volatile unemployment</strong> patterns, 
             with sharp increases or decreases in recent years, while other countries, 
             such as Belarus and Venezuela, show relatively stable but <strong style="color:green;">high unemployment rates</strong>.
@@ -96,7 +96,6 @@
         </div>
       </div>
     </div>
-
 
     <!-- pure grid group -->
     <div class="pure-g">
@@ -107,7 +106,7 @@
           across continents. Oceania and Europe are more stable, while Africa and South America face higher 
           <strong style="color:green;">unemployment</strong> and <strong style="color:red;">inflation</strong> variability. 
           Asia shows wide differences, especially in China and India. North America is mostly stable, with some discrepancies.</p>
-
+      </div>
     </div>
     <!-- end pure grid group -->
 
@@ -123,13 +122,23 @@
 
     <div class="pure-g">
         <div class="pure-u-1-1 small-font">
-            <p>&copy; 2022 <a href="https://fit3179.github.io/Vega-Lite/" target="_blank">FIT3179 Teaching Team</a>. Copyright reserved. Those examples are for educational purpose only.
+          <p><strong>Author:</strong> Ethan Yong Yu Heng</p>
+
+          <p><strong>Generated on:</strong> 15 October 2024</p>
+          
+          <p><strong>Data Sources:</strong></p>
+          
+          <p>Global Inflation Dataset: <a href="https://www.kaggle.com/datasets/sazidthe1/global-inflation-data">https://www.kaggle.com/datasets/sazidthe1/global-inflation-data</a></p>
+          
+          <p>CO2 emissions country wise with income group: <a href="https://www.kaggle.com/datasets/azizulhakim98/c02-emissions-country-wise-with-income-group">https://www.kaggle.com/datasets/azizulhakim98/c02-emissions-country-wise-with-income-group</a></p>
+          
+          <p>Global Unemployment Data: <a href="https://www.kaggle.com/datasets/sazidthe1/global-unemployment-data?resource=download">https://www.kaggle.com/datasets/sazidthe1/global-unemployment-data?resource=download</a></p>          
         </div>
     </div>
     </div>
     <!-- end pure grid group -->
 
-    
+  </div>
 
   <script type="text/javascript">
     var specVis1 = "test.json";
@@ -156,6 +165,7 @@
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
   </script>
+
 </body>
 
 </html>
