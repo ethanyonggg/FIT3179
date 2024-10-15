@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Multiple Visualisations | An Example</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="styles.css" media="all">
+
+
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>Global Analysis of Inflation, Unemployment, and CO2 Emissions: Understanding Interdependencies (2014-2024)</h1>
+        <p>High inflation can erode the purchasing power of consumers, potentially leading to reduced demand for goods and services, which in turn affects job markets. By studying this relationship, policymakers can better understand how to manage inflation without creating spikes in unemployment, thus ensuring social stability.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+
+      <div class="pure-u-1-2">
+        <h2>Inflation Trends Among the Top 10 Countries (2014-2024)</h2>
+        <p>Countries, like Venezuela, have consistently held the top rank throughout the period, 
+          indicating persistent inflationary challenges. In contrast, countries such as Zimbabwe and 
+          Argentina show significant fluctuations, with their ranks rising and falling over the years,
+           suggesting varying levels of economic stability and policy responses. </p>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div id="vis3" class="vis-container"></div>
+      </div>
+    </div>
+
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="description description-right">
+      <h2>2014 Inflation Rate vs. CO2 Emissions by Country</h2>
+      <p>Argentina has a relatively <strong style="color:red;">high inflation rate</strong> and moderate <strong style="color:blue;">CO2 emissions</strong>, and China, 
+        with substantial <strong style="color:blue;">emissions</strong> despite a lower <strong style="color:red;">inflation rate</strong>. The scatter pattern indicates that 
+        while some countries experience <strong style="color:red;">high inflation</strong> and <strong style="color:blue;">emissions</strong> concurrently, others maintain a balance with 
+        lower rates in both aspects.</p>
+
+    </div>
+    
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="vis2" class="vis-container"></div>
+      </div>
+    </div>
+    
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-2-3">
+        <div id="vis4" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-3">
+        <div class="description description-right">
+          <h2>Unemployment Rate Trends (2014-2024)</h2>
+          <p>Iran, Sudan, and Mongolia exhibit more <strong style="color:green;">volatile unemployment</strong> patterns, 
+            with sharp increases or decreases in recent years, while other countries, 
+            such as Belarus and Venezuela, show relatively stable but <strong style="color:green;">high unemployment rates</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2>Correlation of <strong style="color:red;">Inflation</strong> and Key Measures (2014-2020)</h2>
+        <p>The analysis shows varied patterns in <strong style="color:blue;">CO2 emissions</strong>, 
+          <strong style="color:red;">inflation</strong>, and <strong style="color:green;">unemployment</strong> 
+          across continents. Oceania and Europe are more stable, while Africa and South America face higher 
+          <strong style="color:green;">unemployment</strong> and <strong style="color:red;">inflation</strong> variability. 
+          Asia shows wide differences, especially in China and India. North America is mostly stable, with some discrepancies.</p>
+
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="vis5" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <hr class="hr3">
+
+    <div class="pure-g">
+        <div class="pure-u-1-1 small-font">
+            <p>&copy; 2022 <a href="https://fit3179.github.io/Vega-Lite/" target="_blank">FIT3179 Teaching Team</a>. Copyright reserved. Those examples are for educational purpose only.
+        </div>
+    </div>
+    </div>
+    <!-- end pure grid group -->
+
+    
+
+  <script type="text/javascript">
+    var specVis1 = "test.json";
+    var specVis2 = "interactive_scatterplot.json";
+    var specVis3 = "top_10_countries.json";
+    var specVis4 = "co2_line_chart.json";
+    var specVis5 = "parallel_coordinates.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false, "padding": 0});
+
+    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis5', specVis5, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+  </script>
+</body>
+
+</html>
