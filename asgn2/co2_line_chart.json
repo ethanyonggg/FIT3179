@@ -59,7 +59,7 @@
         "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/yearly_unemployment.csv",
         "format": { "type": "csv" }
       },
-      "mark": { "type": "text", "fontSize": 15, "align": "left", "dx": 10 },
+      "mark": { "type": "text", "fontSize": 10, "align": "left", "dx": -3, "dy": -5 }, 
       "transform": [
         { "filter": "datum.year == selectedYear" },
         {
@@ -70,5 +70,6 @@
       "encoding": { "text": { "field": "coun" } }
     }
   ],
-  "config": { "style": { "cell": { "stroke": "transparent" } } }
+  "config": {
+  }
 }
