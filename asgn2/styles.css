@@ -1,4 +1,29 @@
-body *{
+.title-section {
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+    width: 90%; /* Keeps the content within the page */
+  }
+
+  .title-section h1 {
+    background-color: #ADD8E6; /* Light blue background */
+    color: black; /* Text color inside h1 */
+    display: inline-block; /* Makes the background apply only to the text */
+    border-radius: 20px; /* Slight rounding of the corners */
+    font-size: 2em;
+    margin: 0; /* Remove default margin for the heading */
+    padding: 10px; /* Reduce padding for title section */
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  .title-section p {
+    color: black; /* Ensure text is legible */
+    font-size: 1.1em;
+  }
+  
+body * {
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -15,18 +40,22 @@ body {
     background-color: white;
     margin: auto;
     padding: 50px;
-    padding-top: 35px;
+    padding-top: 20px;
+    padding-bottom: 30px;
     min-height: 100vh; /* Ensure it takes at least the full viewport height */
     padding-bottom: 50px; /* Add some bottom padding to avoid content being too close to the footer */
 }
 
 .vis-container {
     width: 100%;
+    margin-bottom: 20px; /* Reduce space between the visualizations */
+    padding: 0;
 }
 
 .description h2,
 h1 {
-    margin-top: 0px;
+    margin-top: 10px; /* Reduce space above the headings */
+    margin-bottom: 5px; /* Reduce space below the headings */
 }
 
 .description-right {
@@ -36,30 +65,141 @@ h1 {
 .description-left {
     padding-right: 20px;
 }
+.description p {
+    margin-bottom: -50px; /* Reduce space below paragraphs */
+}
 
 .pure-g {
-    margin-bottom: 40px;
+    margin-bottom: 0px; 
+    display: flex;
 }
 
 .small-font {
     font-size: 14px;
 }
 
+.pure-u-1-2 {
+    margin-top: 10px;
+    margin-bottom: -40px; /* Add more space below the first visual */
+}
+
+.pure-u-1-3{
+    margin-bottom: 45px; /* Add more space below the first visual */
+}
+
+
 .pure-u-2-3 {
 	padding-right: 0; /* Reduce or set to zero to shift the element left */
-  margin-left: -20px;
-  }
-  
+    margin-left: -20px;
+    margin-top: -10px;
+}
+
+.text-section{
+    margin-bottom: -140px;
+}
+
 #vis1 {
-    margin: 0;
+    margin: 20;
     padding: 0;
     border: none;
-  }
-  
+}
 
 .pure-g {
     display: flex;
     justify-content: flex-start; /* Move the content towards the left */
+    margin-bottom: 10px; /* Reduce space between the pure grid sections */
+}
+
+.annotation-container {
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    width: 200px;
+    top: 40%; /* Adjust this to position it as desired */
+    left: 10%; /* Adjust this to position it as desired */
+  }
+
+  /* Container for vis1 annotation */
+.annotation-vis1 {
+    position: relative;           /* Positioned absolutely within the vis1 container */
+    top: -120px;                   /* Adjust the top distance to position the annotation */
+    left: 0px;                  /* Adjust the left distance to move the annotation horizontally */
+    width: 250px; 
+    bottom: 700px;                /* Width of the annotation box */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 10px;                /* Padding inside the annotation */
+    border: 1px solid #ddd;       /* Border for the annotation box */
+    border-radius: 8px;           /* Rounded corners */
+    font-size: 12px;              /* Text size */
+    font-weight: bold;            /* Bold text */
+    color: black;                 /* Text color */
+    z-index: 10;                  /* Ensure the annotation is above the visualization */
   }
   
-  
+    /* Container for vis1 annotation */
+.annotation-vis2 {
+    position: relative;           /* Positioned absolutely within the vis1 container */
+    top: 270px;                   /* Adjust the top distance to position the annotation */
+    left: 40px;                 /* Adjust the left distance to move the annotation horizontally */
+    width: 150px; 
+    bottom: 600px;                /* Width of the annotation box */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 10px;                /* Padding inside the annotation */
+    border: 1px solid #ddd;       /* Border for the annotation box */
+    border-radius: 8px;           /* Rounded corners */
+    font-size: 10px;              /* Text size */
+    font-weight: bold;            /* Bold text */
+    color: black;                 /* Text color */
+    z-index: 10;                  /* Ensure the annotation is above the visualization */
+  }
+
+      /* Container for vis1 annotation */
+.annotation-vis3 {
+    position: relative;           /* Positioned absolutely within the vis1 container */
+    top: 555px;                   /* Adjust the top distance to position the annotation */
+    left: 355px;                 /* Adjust the left distance to move the annotation horizontally */
+    right: 300px;
+    width: 150px; 
+    bottom: 600px;                /* Width of the annotation box */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 10px;                /* Padding inside the annotation */
+    border: 1px solid #ddd;       /* Border for the annotation box */
+    border-radius: 8px;           /* Rounded corners */
+    font-size: 10px;              /* Text size */
+    font-weight: bold;            /* Bold text */
+    color: black;                 /* Text color */
+    z-index: 10;                  /* Ensure the annotation is above the visualization */
+  }
+
+        /* Container for vis1 annotation */
+.annotation-vis4 {
+    position: relative;           /* Positioned absolutely within the vis1 container */
+    top: 150px;                   /* Adjust the top distance to position the annotation */
+    left: 485px;                 /* Adjust the left distance to move the annotation horizontally */
+    width: 150px; 
+    bottom: 600px;                /* Width of the annotation box */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 10px;                /* Padding inside the annotation */
+    border: 1px solid #ddd;       /* Border for the annotation box */
+    border-radius: 8px;           /* Rounded corners */
+    font-size: 10px;              /* Text size */
+    font-weight: bold;            /* Bold text */
+    color: black;                 /* Text color */
+    z-index: 10;                  /* Ensure the annotation is above the visualization */
+  }
+
+  .vis-container {
+    position: relative;   /* Ensures the absolute positioning of the annotation works within this container */
+    display: block;
+    max-width: 1100px;    /* Optional, can adjust the width of the container */
+    margin: 0 auto;       /* Center the visualization */
+  }
+
+  #vis5 {
+    margin-bottom: 50px; /* Increase this value to add more space */
+}
+
+#vis2 {
+    margin-bottom: 20px; /* Increase this value to add more space */
+}
