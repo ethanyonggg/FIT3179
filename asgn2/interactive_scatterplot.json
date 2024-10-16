@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 680,
-  "height": 400,
+  "height": 500,
   "title": "2014 Inflation vs. CO2 Emissions",
   "data": {
     "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/merged_inflation_co2_unemployment_no_na.csv"
@@ -113,10 +113,10 @@
           "legend": { "format": ".1s" }
         },
         "tooltip": [
-          { "field": "country_name", "type": "nominal" },
-          { "field": "2014_inflation", "type": "quantitative", "title": "2014 Inflation Rate", "format": ".2f" },
-          { "field": "2014_co2", "type": "quantitative", "title": "2014 CO2 Emissions", "format": ".2f" },
-          { "field": "2014", "type": "quantitative", "title": "2014 Data", "format": "," }
+          { "field": "country_name", "type": "nominal", "title": "Country name" },
+          { "field": "2014_inflation", "type": "quantitative", "title": "Inflation Rate", "format": ".2f" },
+          { "field": "2014_co2", "type": "quantitative", "title": "CO2 Emissions", "format": ".2f" },
+          { "field": "2014", "type": "quantitative", "title": "Unemployment Rate", "format": "," }
         ]
       }
     },
@@ -129,7 +129,7 @@
       },
       "transform": [
         {
-          "filter": "datum['country_name'] == 'Greece' || datum['country_name'] == 'Spain' || datum['country_name'] == 'Bolivia'|| datum['country_name'] == 'Uruguay'"
+          "filter": "datum['country_name'] == 'Greece' || datum['country_name'] == 'Venezuela' || datum['country_name'] == 'Palestine'"
         }
       ],
       "encoding": {
