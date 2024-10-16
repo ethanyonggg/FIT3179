@@ -1,126 +1,156 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Parallel coordinates plot for normalized Inflation, CO2 Emissions, and Unemployment Rate",
-    "data": {
-      "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/long_data_with_continent.csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Parallel coordinates plot for normalized Inflation, CO2 Emissions, and Unemployment Rate",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ethanyonggg/FIT3179/refs/heads/main/long_data_with_continent.csv"
+  },
+  "width": 700,
+  "height": 300,
+  "params": [
+    {
+      "name": "continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "North America", "South America", "Europe", "Africa", "Asia", "Oceania"],
+        "labels": ["Show All", "North America", "South America", "Europe", "Africa", "Asia", "Oceania"],
+        "name": "Continent Selection: "
+      }
     },
-    "width": 600,
-    "height": 300,
-    "params": [
-      {
-        "name": "continent_selection",
-        "bind": {
-          "input": "select",
-          "options": [null, "North America", "South America", "Europe", "Africa", "Asia", "Oceania"],
-          "labels": ["Show All", "North America", "South America", "Europe", "Africa", "Asia", "Oceania"],
-          "name": "Continent Selection: "
-        }
-      },
-      {
-        "name": "year_selection",
-        "value": 2014,
-        "bind": {
-          "input": "range",
-          "min": 2014,
-          "max": 2020,
-          "step": 1,
-          "name": "Year Selection: "
-        }
-      }
-    ],
-    "transform": [
-      {
-        "filter": "continent_selection == null || datum.Continent == continent_selection"
-      },
-      {
-        "filter": "datum.year == year_selection"
-      },
-      {"filter": "isValid(datum.inflation_norm) && isValid(datum.co2_norm) && isValid(datum.unemployment_norm)"}, 
-      {"window": [{"op": "count", "as": "index"}]},
-      {"fold": ["inflation_norm", "co2_norm", "unemployment_norm"], "as": ["category", "value"]}
-    ],
-    "layer": [
-      {
-        "mark": {"type": "rule", "color": "#ccc"},
-        "encoding": {
-          "detail": {"aggregate": "count"},
-          "x": {"field": "category", "sort": ["inflation_norm", "co2_norm", "unemployment_norm"]}
-        }
-      },
-      {
-        "mark": "line",
-        "encoding": {
-          "color": {"type": "nominal", "field": "country_name"},
-          "detail": {"type": "nominal", "field": "index"},
-          "opacity": {"value": 0.3},
-          "x": {"type": "nominal", "field": "category", "sort": ["inflation_norm", "co2_norm", "unemployment_norm"]},
-          "y": {"type": "quantitative", "field": "value", "axis": null},
-          "tooltip": [
-            {"field": "inflation_norm", "type": "quantitative", "title": "Inflation (Normalized)"},
-            {"field": "co2_norm", "type": "quantitative", "title": "CO2 Emissions (Normalized)"},
-            {"field": "unemployment_norm", "type": "quantitative", "title": "Unemployment Rate (Normalized)"}
-          ]
-        }
-      },
-      {
-        "encoding": {
-          "x": {"type": "nominal", "field": "category", "sort": ["inflation_norm", "co2_norm", "unemployment_norm"]},
-          "y": {"value": 0}
-        },
-        "layer": [
-          {
-            "mark": {"type": "text", "style": "label"},
-            "encoding": {
-              "text": {"aggregate": "max", "field": "value"}
-            }
-          },
-          {
-            "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
-          }
-        ]
-      },
-      {
-        "encoding": {
-          "x": {"type": "nominal", "field": "category", "sort": ["inflation_norm", "co2_norm", "unemployment_norm"]},
-          "y": {"value": 150}
-        },
-        "layer": [
-          {
-            "mark": {"type": "text", "style": "label"},
-            "encoding": {
-              "text": {"aggregate": "min", "field": "value"}
-            }
-          },
-          {
-            "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
-          }
-        ]
-      },
-      {
-        "encoding": {
-          "x": {"type": "nominal", "field": "category", "sort": ["inflation_norm", "co2_norm", "unemployment_norm"]},
-          "y": {"value": 300}
-        },
-        "layer": [
-          {
-            "mark": {"type": "text", "style": "label"},
-            "encoding": {
-              "text": {"aggregate": "min", "field": "value"}
-            }
-          },
-          {
-            "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
-          }
-        ]
-      }
-    ],
-    "config": {
-      "axisX": {"domain": false, "labelAngle": 0, "tickColor": "#ccc", "title": null},
-      "view": {"stroke": null},
-      "style": {
-        "label": {"baseline": "middle", "align": "right", "dx": -5},
-        "tick": {"orient": "horizontal"}
+    {
+      "name": "year_selection",
+      "value": 2014,
+      "bind": {
+        "input": "range",
+        "min": 2014,
+        "max": 2020,
+        "step": 1,
+        "name": "Year Selection: "
       }
     }
+  ],
+  "transform": [
+    {
+      "filter": "continent_selection == null || datum.Continent == continent_selection"
+    },
+    {
+      "filter": "datum.year == year_selection"
+    },
+    {"filter": "isValid(datum.inflation_norm) && isValid(datum.co2_norm) && isValid(datum.unemployment_norm)"}, 
+    {"window": [{"op": "count", "as": "index"}]},
+    {"fold": ["inflation_norm", "co2_norm", "unemployment_norm"], "as": ["category", "value"]}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "rule", "color": "#ccc"},
+      "encoding": {
+        "detail": {"aggregate": "count"},
+        "x": {
+          "field": "category",
+          "title": "Economic Indicators",  
+          "sort": ["Inflation (%)", "Carbon Emission (%)", "Unemployment (%)"]
+        }
+      }
+    },
+    {
+      "mark": "line",
+      "encoding": {
+        "color": {"type": "nominal", "field": "country_name"},
+        "detail": {"type": "nominal", "field": "index"},
+        "opacity": {"value": 0.3},
+        "x": {
+          "type": "nominal",
+          "field": "category",
+          "sort": ["Inflation (%)", "Carbon Emission (%)", "Unemployment (%)"],
+          "axis": {
+            "title": null,
+            "labelFontSize": 14,  
+            "labelExpr": "datum.label == 'inflation_norm' ? 'Inflation (%)' : datum.label == 'co2_norm' ? 'Carbon Emission (%)' : 'Unemployment (%)'"
+          }
+        },
+        "y": {"type": "quantitative", "field": "value", "axis": null},
+        "tooltip": [
+          {"field": "inflation_norm", "type": "quantitative", "title": "Inflation (Normalized)"},
+          {"field": "co2_norm", "type": "quantitative", "title": "CO2 Emissions (Normalized)"},
+          {"field": "unemployment_norm", "type": "quantitative", "title": "Unemployment Rate (Normalized)"}
+        ]
+      }
+    },
+    {
+      "encoding": {
+        "x": {
+          "type": "nominal",
+          "field": "category",
+          "sort": ["Inflation (%)", "Carbon Emission (%)", "Unemployment (%)"]
+        },
+        "y": {"value": 0}
+      },
+      "layer": [
+        {
+          "mark": {"type": "text", "style": "label"},
+          "encoding": {
+            "text": {"aggregate": "max", "field": "value"}
+          }
+        },
+        {
+          "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "x": {
+          "type": "nominal",
+          "field": "category",
+          "sort": ["Inflation (%)", "Carbon Emission (%)", "Unemployment (%)"]
+        },
+        "y": {"value": 150}
+      },
+      "layer": [
+        {
+          "mark": {"type": "text", "style": "label"},
+          "encoding": {
+            "text": {"aggregate": "min", "field": "value"}
+          }
+        },
+        {
+          "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "x": {
+          "type": "nominal",
+          "field": "category",
+          "sort": ["Inflation (%)", "Carbon Emission (%)", "Unemployment (%)"]
+        },
+        "y": {"value": 300}
+      },
+      "layer": [
+        {
+          "mark": {"type": "text", "style": "label"},
+          "encoding": {
+            "text": {"aggregate": "min", "field": "value"}
+          }
+        },
+        {
+          "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axisX": {
+      "domain": false,
+      "labelAngle": 0,
+      "tickColor": "#ccc",
+      "title": null,
+      "labelFontSize": 14 
+    },
+    "view": {"stroke": null},
+    "style": {
+      "label": {"baseline": "middle", "align": "right", "dx": -5},
+      "tick": {"orient": "horizontal"}
+    }
   }
-  
+}
